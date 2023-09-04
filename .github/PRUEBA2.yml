@@ -1,0 +1,28 @@
+name: Pruebas Automatizadas de Python
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código fuente
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Actualiza a Node.js 16
+
+    - name: Instalar dependencias
+      run: |
+        npm install -g npm  # Actualiza npm a la última versión
+        npm install  # Instala las dependencias
+
+    - name: Ejecutar pruebas
+      run: |
+        npm test
